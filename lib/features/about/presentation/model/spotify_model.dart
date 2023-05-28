@@ -75,8 +75,7 @@ class Items {
   List<Images>? images;
   String? name;
   Owner? owner;
-  Null? primaryColor;
-  Null? public;
+
   String? snapshotId;
   Tracks? tracks;
   String? type;
@@ -91,8 +90,6 @@ class Items {
       this.images,
       this.name,
       this.owner,
-      this.primaryColor,
-      this.public,
       this.snapshotId,
       this.tracks,
       this.type,
@@ -114,11 +111,9 @@ class Items {
     }
     name = json['name'];
     owner = json['owner'] != null ? Owner.fromJson(json['owner']) : null;
-    primaryColor = json['primary_color'];
-    public = json['public'];
+
     snapshotId = json['snapshot_id'];
-    tracks =
-        json['tracks'] != null ? Tracks.fromJson(json['tracks']) : null;
+    tracks = json['tracks'] != null ? Tracks.fromJson(json['tracks']) : null;
     type = json['type'];
     uri = json['uri'];
   }
@@ -139,8 +134,7 @@ class Items {
     if (owner != null) {
       data['owner'] = owner!.toJson();
     }
-    data['primary_color'] = primaryColor;
-    data['public'] = public;
+
     data['snapshot_id'] = snapshotId;
     if (tracks != null) {
       data['tracks'] = tracks!.toJson();
@@ -168,23 +162,19 @@ class ExternalUrls {
 }
 
 class Images {
-  Null? height;
   String? url;
-  Null? width;
 
-  Images({this.height, this.url, this.width});
+  Images({this.url});
 
   Images.fromJson(Map<String, dynamic> json) {
-    height = json['height'];
     url = json['url'];
-    width = json['width'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['height'] = height;
+
     data['url'] = url;
-    data['width'] = width;
+
     return data;
   }
 }

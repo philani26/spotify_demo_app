@@ -1,42 +1,34 @@
 import 'package:flutter/material.dart';
 
 class SingleArtistCard extends StatelessWidget {
-  const SingleArtistCard({
-    super.key,
-    required this.url,
-    required this.name,
-    required this.description,
-  });
+  const SingleArtistCard(
+      {super.key,
+      required this.url,
+      required this.name,
+      this.description,
+      this.followers});
 
   final String url;
   final String name;
-  final String description;
+  final String? description;
+  final String? followers;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Stack(
-            children: [
-              SizedBox(
-                height: 250,
-                child: Image.network(
-                  url, // Replace with your own image path
-                  fit: BoxFit.cover,
-                ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
               ),
-              Positioned(
-                  top: 100,
-                  left: 0,
-                  right: 0,
-                  child: Icon(
-                    Icons.play_circle,
-                    size: 80,
-                    color: Colors.grey.shade400,
-                  ))
-            ],
+              child: Image.network(
+                url,
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
           ListTile(
             title: Text(
@@ -44,10 +36,7 @@ class SingleArtistCard extends StatelessWidget {
               style: const TextStyle(fontSize: 20),
               overflow: TextOverflow.ellipsis,
             ),
-            subtitle: Text(description, overflow: TextOverflow.ellipsis),
           ),
-          const SizedBox(height: 10),
-          const Divider(height: 20, color: Colors.grey),
         ],
       ),
     );
